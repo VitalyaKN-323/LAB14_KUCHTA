@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перевірка на унікальність елементів масиву</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 200px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Перевірка на унікальність елементів масиву</h1>
+    <label for="arrayInput">Введіть масив чисел через кому (наприклад, 1, 2, 3):</label>
+    <input type="text" id="arrayInput">
+    <button onclick="перевіритиУнікальність()">Перевірити унікальність</button>
+    <div id="result"></div>
+
+    <script>
+        function перевіритиУнікальність() {
+            const введення = document.getElementById("arrayInput").value;
+            const масив = введення.split(",").map(item => parseInt(item.trim()));
+            const результат = знайтиУнікальність(масив);
+            document.getElementById("result").innerText = "Результат: " + результат;
+        }
+
+        function знайтиУнікальність(масив) {
+            for (let i = 0; i < масив.length; i++) {
+                for (let j = i + 1; j < масив.length; j++) {
+                    if (масив[i] === масив[j]) {
+                        return "У масиві є дублікати.";
+                    }
+                }
+            }
+            return "У масиві немає дублікатів.";
+        }
+    </script>
+</body>
+</html>
